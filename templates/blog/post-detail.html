@@ -1,25 +1,46 @@
 {% extends "base.html" %}
 {% load blog_extras %}
+{% load crispy_forms_tags %}
+
 {% block content %}
 <h2>{{ post.title }}</h2>
 
-{% row %}
-    {% col %}
-        {% include "blog/post-byline.html" %}
-    {% endcol %}
-{% endrow %}
+<div class="row">
+  <div class="col">
+    {% include "blog/post-byline.html" %}
+  </div>
+</div>
 
-{% row %}
-    {% col %}
-        {{ post.content|safe }}
-    {% endcol %}
-{% endrow %}
+<div class="row">
+  <div class="col">
+    {{ post.content|safe }}
+  </div>
+</div>
 
-{% row %}
-    {% col %}
-        {% recent_posts post %}
-    {% endcol %}
-{% endrow %}
+<div class="row">
+  <div class="col">
+    {% include "blog/post-comments.html" %}
+  </div>
+</div>
 
+<div class="row">
+  <div class="col">
+    {% recent_posts post %}
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    {% if comment_form %}
+      <h3>Leave a Comment</h3>
+      <form method="post">
+        {% csrf_token %}
+        {{ comment_form|crispy }}
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    {% else %}
+      <p>You must be logged in to comment.</p>
+    {% endif %}
+  </div>
+</div>
 {% endblock %}
-

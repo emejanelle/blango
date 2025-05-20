@@ -42,6 +42,8 @@ SESSION_COOKIE_SAMESITE = 'None'
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
+    "crispy_forms",
+    "crispy_bootstrap5",
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -133,3 +135,6 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
